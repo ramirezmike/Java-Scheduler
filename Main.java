@@ -12,5 +12,8 @@ public class Main
         master.derp = 9;
         System.out.println(master.derp);
         master.add();
+
+        TimeSpan time = new TimeSpan(50, 60);
+        System.out.println(time.getTimeIn());
     }
 }
