@@ -15,9 +15,9 @@ public class Schedule
     
     public void add(int day, TimeSpan shiftTime)
     {
-        if (shiftExists())
+        ArrayList<Object> tempList = getDayList(day);
+        if (!shiftExists(shiftTime, tempList))
         {
-            ArrayList<Object> tempList = getDayList(day);
             tempList.add(shiftTime);
             for (Object span : tempList)
             {
@@ -26,6 +26,8 @@ public class Schedule
                 System.out.println(temp.getTimeOut());
             }
         }
+        else
+            System.out.println("Shift exists");
     }
 
     public void remove()
@@ -43,9 +45,32 @@ public class Schedule
         return schList.get(day);
     }
     
-    private boolean shiftExists()
+    private boolean shiftExists(TimeSpan shiftTime, ArrayList<Object>dayList)
     {
-        System.out.println("ShiftExists");
-        return true;
+        if (dayList.isEmpty())         
+        {
+            System.out.println("Daylist is empty");
+            return false;
+        }
+        for (Object span : dayList)
+        {
+            TimeSpan tempSpan = (TimeSpan)span;
+            if (doShiftsOverlap(shiftTime,tempSpan) || doShiftsOverlap(tempSpan,shiftTime)) 
+            {
+                System.out.println("Two shifts are overlapping");
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean doShiftsOverlap(TimeSpan shiftOne, TimeSpan shiftTwo)
+    {
+       if (shiftOne.getTimeIn() >= shiftTwo.getTimeIn() && shiftOne.getTimeIn() <= shiftTwo.getTimeOut()) 
+            return true;
+       else if (shiftOne.getTimeOut() <= shiftTwo.getTimeOut() && shiftOne.getTimeOut() >= shiftTwo.getTimeIn())
+            return true;
+       else
+            return false;
     }
 }
