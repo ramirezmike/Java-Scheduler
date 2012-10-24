@@ -15,5 +15,9 @@ public class Main
 
         TimeSpan time = new TimeSpan(50, 60);
         System.out.println(time.getTimeIn());
+
+        TimeSpan time2 = new TimeSpan(50, 60, "BOH");
+        System.out.println(time2.getTimeIn());
+        System.out.println(time2.getPosition());
     }
 }

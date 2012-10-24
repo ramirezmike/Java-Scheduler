@@ -2,10 +2,17 @@ public class TimeSpan
 {
     private double timeIn;
     private double timeOut;
+    private String position;
     
     public TimeSpan(double tIn, double tOut)
     {
         setTime(tIn, tOut);
+    }
+
+    public TimeSpan(double tIn, double tOut, String pos)
+    {
+        setTime(tIn, tOut);
+        setPosition(pos);
     }
 
     public void setTime(double tIn, double tOut)
@@ -19,6 +26,16 @@ public class TimeSpan
             System.out.println("Time in < Time Out");// implement error throw
     }
 
+    public void setPosition(String pos)
+    {
+        position = pos;
+    }
+
+    public String getPosition()
+    {
+        return position;
+    }
+        
     public double getTimeIn()
     {
         return timeIn;
