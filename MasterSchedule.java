@@ -15,4 +15,9 @@ public class MasterSchedule extends Schedule
         }   
         System.out.println("Master added shift");
     }   
+
+    public void scheduleEmployee(int day, TimeSpan shiftTime, Employee emp)
+    {
+        
+    }
 }

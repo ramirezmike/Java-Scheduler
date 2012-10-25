@@ -3,6 +3,7 @@ public class TimeSpan
     private double timeIn;
     private double timeOut;
     private String position;
+    private Employee scheduledEmp;
     
     public TimeSpan(double tIn, double tOut)
     {

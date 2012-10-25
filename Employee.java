@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee 
 {
     private Schedule availability;    
@@ -14,9 +17,32 @@ public class Employee
         lastName = lName;
         maxHrs = maxH;
         minHrs = minH;
-        System.out.println("Employee Construct");
+
+        availability = new Schedule();
+        requestsOff = new Schedule();
+        shiftsTaken = new Schedule();
     }
 
+    public void addAvailability(int day, TimeSpan shiftTime)
+    {
+       availability.add(day, shiftTime); 
+    }
+
+    public ArrayList<Object> getAvailabilityOnDay(int day)
+    {
+        return availability.getDayList(day);
+    }
+
+    public void addRequest(int day, TimeSpan shiftTime)
+    {
+       requestsOff.add(day, shiftTime); 
+    }
+
+    public void addShiftTaken(int day, TimeSpan shiftTime)
+    {
+       shiftsTaken.add(day, shiftTime); 
+    }
+    
     public String getFirstName()
     {
         return firstName;

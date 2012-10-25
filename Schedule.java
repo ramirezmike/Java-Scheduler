@@ -30,8 +30,10 @@ public class Schedule
             System.out.println("Shift exists");
     }
 
-    public void remove()
+    public void remove(int day, TimeSpan shiftTime)
     {
+        ArrayList<Object> tempList = getDayList(day);
+        tempList.remove(shiftTime);
         System.out.println("Removed shift");
     }
 
@@ -40,7 +42,9 @@ public class Schedule
         System.out.println("Cleared shift");
     }
 
-    public ArrayList<Object> getDayList(int day)
+// following may be removed if there's 
+// no need for public access to schedule
+    public ArrayList<Object> getDayList(int day)     
     {
         return schList.get(day);
     }
