@@ -28,6 +28,11 @@ public class Employee
        availability.add(day, shiftTime); 
     }
 
+    public void removeAvailability(int day, TimeSpan shiftTime)
+    {
+        availability.remove(day, shiftTime);
+    }
+
     public ArrayList<Object> getAvailabilityOnDay(int day)
     {
         return availability.getDayList(day);

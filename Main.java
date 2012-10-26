@@ -5,19 +5,18 @@ public class Main
 {
     public static void main (String[] args) 
     {
+        Employee emp1 = new Employee("Michael", "Ramirez", 30, 40);
 
-        Schedule sch1 = new Schedule();
-
-        TimeSpan tSpan = new TimeSpan(8.40,10.30);
+        TimeSpan tSpan = new TimeSpan(99.60,10.30);
         TimeSpan tSpan1 = new TimeSpan(10.35,15.40);
 
-        sch1.add(3, tSpan);
-        sch1.add(3, tSpan1);
+        emp1.addAvailability(3, tSpan);
+        emp1.addAvailability(3, tSpan1);
 
-        ArrayList<Object> list = sch1.getDayList(3);
+        ArrayList<Object> list = emp1.getAvailabilityOnDay(3); 
         System.out.println(list);
 
-        sch1.remove(3, tSpan);
+        emp1.removeAvailability(3, tSpan);
         System.out.println(list);
     }
 }
