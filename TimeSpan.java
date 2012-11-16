@@ -24,7 +24,7 @@ public class TimeSpan
             timeOut = timeCheck(tOut);
         }
         else
-            System.out.println("Time in < Time Out");// implement error throw
+            System.out.println("Time in > Time Out");// implement error throw
     }
 
     public void setPosition(String pos)

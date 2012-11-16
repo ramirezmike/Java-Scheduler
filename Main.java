@@ -5,18 +5,25 @@ public class Main
 {
     public static void main (String[] args) 
     {
-        Employee emp1 = new Employee("Michael", "Ramirez", 30, 40);
+        ArrayList<Object> employeesList = new ArrayList<Object>(2);
 
-        TimeSpan tSpan = new TimeSpan(99.60,10.30);
-        TimeSpan tSpan1 = new TimeSpan(10.35,15.40);
+        Employee emp1 = new Employee("Michael", "Ramirez", 30, 40);
+        Employee emp2 = new Employee("Krystal", "Ramirez", 30, 40);
+        employeesList.add(emp1);
+        employeesList.add(emp2);
+        MasterSchedule mSch1 = new MasterSchedule();
+
+        TimeSpan tSpan = new TimeSpan(9.60,10.60);
 
         emp1.addAvailability(3, tSpan);
-        emp1.addAvailability(3, tSpan1);
+        mSch1.add(3, tSpan);
 
         ArrayList<Object> list = emp1.getAvailabilityOnDay(3); 
-        System.out.println(list);
+        System.out.println("Begining list: " + list);
 
-        emp1.removeAvailability(3, tSpan);
-        System.out.println(list);
+        list = emp2.getShiftsOnDay(3);
+        System.out.println("Shifts:" + list);
+        mSch1.generateSchedule(employeesList);
+        System.out.println("Shifts:" + list);
     }
 }

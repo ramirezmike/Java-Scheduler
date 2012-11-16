@@ -48,6 +48,11 @@ public class Schedule
     {
         return schList.get(day);
     }
+
+    public boolean isShiftWithinShift(TimeSpan shiftOne, TimeSpan shiftTwo)
+    {
+       return (shiftOne.getTimeIn() >= shiftTwo.getTimeIn() && shiftOne.getTimeOut() <= shiftTwo.getTimeOut()); 
+    }
     
     private boolean shiftExists(TimeSpan shiftTime, ArrayList<Object>dayList)
     {

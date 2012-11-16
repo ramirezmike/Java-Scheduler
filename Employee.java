@@ -46,6 +46,18 @@ public class Employee
         return false;
     }
 
+    public boolean isCurrentlyWorking(int day, TimeSpan shiftTime)
+    {
+        ArrayList<Object> shiftsTakenOnDayList = getShiftsOnDay(day);
+        for (Object obj : shiftsTakenOnDayList)
+        {
+            TimeSpan span = (TimeSpan) obj;
+            if (shiftsTaken.isShiftWithinShift(shiftTime, span))
+                return true;
+        }
+        return false;
+    }
+
     public ArrayList<Object> getAvailabilityOnDay(int day)
     {
         return availability.getDayList(day);
