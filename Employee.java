@@ -10,6 +10,7 @@ public class Employee
     private String lastName;
     private int maxHrs;
     private int minHrs;
+    private int currentHrs;
 
     public Employee(String fName,String lName,int maxH,int minH)
     {
@@ -33,6 +34,18 @@ public class Employee
         availability.remove(day, shiftTime);
     }
 
+    public boolean isAvailable(int day, TimeSpan shiftTime)
+    {
+        ArrayList<Object> availabilityOnDayList = getAvailabilityOnDay(day);
+        for (Object obj : availabilityOnDayList)
+        {
+            TimeSpan span = (TimeSpan) obj;
+            if (availability.isShiftWithinShift(shiftTime, span))
+                return true;
+        }
+        return false;
+    }
+
     public ArrayList<Object> getAvailabilityOnDay(int day)
     {
         return availability.getDayList(day);
@@ -46,6 +59,28 @@ public class Employee
     public void addShiftTaken(int day, TimeSpan shiftTime)
     {
        shiftsTaken.add(day, shiftTime); 
+    }
+    
+    public ArrayList<Object> getShiftsOnDay(int day)
+    {
+        return shiftsTaken.getDayList(day);
+    }
+
+// following 3 functions aren't functional yet.
+    private boolean isOverMaxHrs()
+    {
+        return true;
+    }
+
+    private boolean isOverMinHrs()
+    {
+        return true;
+    }
+
+    public boolean doesShiftConflict(int day, TimeSpan shiftTime)
+    {
+        ArrayList<Object> shiftsOnDay = shiftsTaken.getDayList(day);     
+        return true;
     }
     
     public String getFirstName()
