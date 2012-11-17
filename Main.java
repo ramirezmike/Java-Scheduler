@@ -21,9 +21,11 @@ public class Main
         ArrayList<Object> list = emp1.getAvailabilityOnDay(3); 
         System.out.println("Begining list: " + list);
 
-        list = emp2.getShiftsOnDay(3);
+        list = emp1.getShiftsOnDay(3);
         System.out.println("Shifts:" + list);
         mSch1.generateSchedule(employeesList);
         System.out.println("Shifts:" + list);
+
+        emp1.addShift(3, tSpan, 1);
     }
 }
