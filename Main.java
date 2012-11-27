@@ -32,5 +32,10 @@ public class Main
 
         emp1.printSchedule();
         emp2.printSchedule();
+
+        Setup stp = new Setup();
+        stp.createEmployee(employeesList);
+
+        System.out.println(employeesList);
     }
 }
