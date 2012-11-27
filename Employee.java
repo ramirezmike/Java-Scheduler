@@ -64,6 +64,38 @@ public class Employee
         return temp.getDayList(day);
     }
 
+    public void printSchedule()
+    {
+        System.out.println("----------------------------------------------");
+        System.out.println(firstName + " " + lastName);
+        System.out.println("[Availability]");
+        System.out.println("-----------------------");
+        for (int i = 0; i < 7; i++)
+        {
+            ArrayList<Object> tempList = getDaySchedule(i,0);
+            for (Object obj : tempList)
+            {
+               TimeSpan span = (TimeSpan) obj; 
+               System.out.println("    Shift______");
+               System.out.println("        Time In : " + span.getTimeIn());
+               System.out.println("        Time Out: " + span.getTimeOut());
+            }
+        }
+
+        System.out.println("[Shifts Taken]");
+        System.out.println("-----------------------");
+        for (int i = 0; i < 7; i++)
+        {
+            ArrayList<Object> tempList = getDaySchedule(i,1);
+            for (Object obj : tempList)
+            {
+               TimeSpan span = (TimeSpan) obj; 
+               System.out.println("    Shift______");
+               System.out.println("        Time In : " + span.getTimeIn());
+               System.out.println("        Time Out: " + span.getTimeOut());
+            }
+        }
+    }
 
 // following 3 functions aren't functional yet.
     private boolean isOverMaxHrs()
