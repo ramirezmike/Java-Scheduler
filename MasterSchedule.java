@@ -18,7 +18,7 @@ public class MasterSchedule extends Schedule
 
     public void scheduleEmployee(int day, TimeSpan shiftTime, Employee emp)
     {
-       emp.addShiftTaken(day, shiftTime); 
+         emp.addShift(day, shiftTime, 1);
        //need to add mark to shift taken in master sch
     }
 

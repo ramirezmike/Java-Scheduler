@@ -24,18 +24,17 @@ public class Employee
         shiftsTaken = new Schedule();
         requestsOff = new Schedule();
 
-        scheduleHolder.add(availability);
-        scheduleHolder.add(shiftsTaken);
-        scheduleHolder.add(requestsOff);
+        scheduleHolder.add(availability); //0
+        scheduleHolder.add(shiftsTaken);  //1
+        scheduleHolder.add(requestsOff);  //2
     }
 
     public void addShift(int day, TimeSpan shiftTime, int scheduleNumber)
     {
         Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
         ArrayList<Object> list = temp.getDayList(3);
-
-        System.out.println("This is the shift test:" + list);
-
+        list.add(shiftTime); 
+        System.out.println("This is the shift test: " + list);
     }
 
     public void addAvailability(int day, TimeSpan shiftTime)
@@ -82,11 +81,6 @@ public class Employee
        requestsOff.add(day, shiftTime); 
     }
 
-    public void addShiftTaken(int day, TimeSpan shiftTime)
-    {
-       shiftsTaken.add(day, shiftTime); 
-    }
-    
     public ArrayList<Object> getShiftsOnDay(int day)
     {
         return shiftsTaken.getDayList(day);

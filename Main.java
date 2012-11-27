@@ -25,7 +25,5 @@ public class Main
         System.out.println("Shifts:" + list);
         mSch1.generateSchedule(employeesList);
         System.out.println("Shifts:" + list);
-
-        emp1.addShift(3, tSpan, 1);
     }
 }
