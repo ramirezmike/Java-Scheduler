@@ -18,7 +18,7 @@ public class MasterSchedule extends Schedule
 
     public void scheduleEmployee(int day, TimeSpan shiftTime, Employee emp)
     {
-         emp.addShift(day, shiftTime, 1);
+        emp.addShift(day, shiftTime, 1);
        //need to add mark to shift taken in master sch
     }
 
@@ -36,8 +36,8 @@ public class MasterSchedule extends Schedule
                 {
                     Employee tempEmp = (Employee)temp;
                     System.out.println(tempEmp.getFirstName());
-                    if (tempEmp.isAvailable(3, span) && 
-                            !tempEmp.isCurrentlyWorking(3,span))
+                    if (tempEmp.doesShiftExist(3, span, 0) && 
+                            !tempEmp.doesShiftExist(3,span, 1))
                     {
                         scheduleEmployee(3, span, tempEmp);
                         scheduleChanged = true;

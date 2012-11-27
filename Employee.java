@@ -47,33 +47,16 @@ public class Employee
 
     public boolean doesShiftExist(int day, TimeSpan shiftTime, int scheduleNumber)
     {
-        return true; 
-    }
-
-    public boolean isAvailable(int day, TimeSpan shiftTime)
-    {
-        ArrayList<Object> availabilityOnDayList = getDaySchedule(day,0);
-        for (Object obj : availabilityOnDayList)
+        Schedule tempSch = (Schedule)scheduleHolder.get(scheduleNumber);
+        ArrayList<Object> list = getDaySchedule(day,scheduleNumber);
+        for (Object obj : list)
         {
             TimeSpan span = (TimeSpan) obj;
-            if (availability.isShiftWithinShift(shiftTime, span))
+            if (tempSch.isShiftWithinShift(shiftTime, span))
                 return true;
         }
         return false;
     }
-
-    public boolean isCurrentlyWorking(int day, TimeSpan shiftTime)
-    {
-        ArrayList<Object> shiftsTakenOnDayList = getDaySchedule(day,1);
-        for (Object obj : shiftsTakenOnDayList)
-        {
-            TimeSpan span = (TimeSpan) obj;
-            if (shiftsTaken.isShiftWithinShift(shiftTime, span))
-                return true;
-        }
-        return false;
-    }
-
 
     public ArrayList<Object> getDaySchedule(int day, int scheduleNumber)
     {
