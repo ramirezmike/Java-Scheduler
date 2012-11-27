@@ -32,24 +32,27 @@ public class Employee
     public void addShift(int day, TimeSpan shiftTime, int scheduleNumber)
     {
         Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
-        ArrayList<Object> list = temp.getDayList(3);
-        list.add(shiftTime); 
-        System.out.println("This is the shift test: " + list);
+        temp.add(day, shiftTime); 
+        ArrayList<Object> list = temp.getDayList(day);
+        System.out.println("Add. This is the " + scheduleNumber +" test: " + list);
     }
 
-    public void addAvailability(int day, TimeSpan shiftTime)
+    public void removeShift(int day, TimeSpan shiftTime, int scheduleNumber)
     {
-       availability.add(day, shiftTime); 
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        temp.remove(day, shiftTime); 
+        ArrayList<Object> list = temp.getDayList(day);
+        System.out.println("Remove. This is the " + scheduleNumber +" test: " + list);
     }
 
-    public void removeAvailability(int day, TimeSpan shiftTime)
+    public boolean doesShiftExist(int day, TimeSpan shiftTime, int scheduleNumber)
     {
-        availability.remove(day, shiftTime);
+        return true; 
     }
 
     public boolean isAvailable(int day, TimeSpan shiftTime)
     {
-        ArrayList<Object> availabilityOnDayList = getAvailabilityOnDay(day);
+        ArrayList<Object> availabilityOnDayList = getDaySchedule(day,0);
         for (Object obj : availabilityOnDayList)
         {
             TimeSpan span = (TimeSpan) obj;
@@ -61,7 +64,7 @@ public class Employee
 
     public boolean isCurrentlyWorking(int day, TimeSpan shiftTime)
     {
-        ArrayList<Object> shiftsTakenOnDayList = getShiftsOnDay(day);
+        ArrayList<Object> shiftsTakenOnDayList = getDaySchedule(day,1);
         for (Object obj : shiftsTakenOnDayList)
         {
             TimeSpan span = (TimeSpan) obj;
@@ -71,20 +74,13 @@ public class Employee
         return false;
     }
 
-    public ArrayList<Object> getAvailabilityOnDay(int day)
+
+    public ArrayList<Object> getDaySchedule(int day, int scheduleNumber)
     {
-        return availability.getDayList(day);
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        return temp.getDayList(day);
     }
 
-    public void addRequest(int day, TimeSpan shiftTime)
-    {
-       requestsOff.add(day, shiftTime); 
-    }
-
-    public ArrayList<Object> getShiftsOnDay(int day)
-    {
-        return shiftsTaken.getDayList(day);
-    }
 
 // following 3 functions aren't functional yet.
     private boolean isOverMaxHrs()

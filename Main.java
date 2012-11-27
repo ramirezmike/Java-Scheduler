@@ -15,13 +15,15 @@ public class Main
 
         TimeSpan tSpan = new TimeSpan(9.60,10.60);
 
-        emp1.addAvailability(3, tSpan);
+        emp1.addShift(3, tSpan, 0);
+        emp2.addShift(3, tSpan, 0);
+        emp2.removeShift(3, tSpan, 0);
         mSch1.add(3, tSpan);
 
-        ArrayList<Object> list = emp1.getAvailabilityOnDay(3); 
+        ArrayList<Object> list = emp1.getDaySchedule(3,0); 
         System.out.println("Begining list: " + list);
 
-        list = emp1.getShiftsOnDay(3);
+        list = emp1.getDaySchedule(3,1);
         System.out.println("Shifts:" + list);
         mSch1.generateSchedule(employeesList);
         System.out.println("Shifts:" + list);
