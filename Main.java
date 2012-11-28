@@ -5,7 +5,7 @@ public class Main
 {
     public static void main (String[] args) 
     {
-        ArrayList<Object> employeesList = new ArrayList<Object>(2);
+        ArrayList<Object> employeesList = new ArrayList<Object>();
 
         Employee emp1 = new Employee("Michael", "Ramirez", 30, 40);
         Employee emp2 = new Employee("Krystal", "Ramirez", 30, 40);
@@ -33,9 +33,25 @@ public class Main
         emp1.printSchedule();
         emp2.printSchedule();
 
+        boolean running = true;
         Setup stp = new Setup();
-        stp.createEmployee(employeesList);
-
-        System.out.println(employeesList);
+        while (running)
+        {
+            stp.printOptions();
+            int choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+            switch(choice)
+            {
+                case 0:
+                    stp.createEmployees(employeesList);
+                    System.out.println(employeesList);
+                    break;
+                case 100:
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Please choose an option.");
+                    break;
+            }
+        }
     }
 }
