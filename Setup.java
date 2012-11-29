@@ -34,13 +34,38 @@ public class Setup
         int schChoice = Integer.parseInt(getInput("What kind of shift?"));
         System.out.println("0 Mon 1 Tue 2 Wed 3 Thr 4 Fri 5 Sat 6 Sun");
         int day = Integer.parseInt(getInput("Which day?"));
-        // the following need to be changed to float
         float start = Float.parseFloat(getInput("Start time?"));
         float end = Float.parseFloat(getInput("End time?"));
 
         TimeSpan tSpan = new TimeSpan(start, end);
         Employee emp = (Employee) empList.get(empChoice);
         emp.addShift(day, tSpan, schChoice);
+    }
+
+    public void removeFromEmpSchedule(ArrayList<Object> empList)
+    {
+        printEmployees(empList);        
+        int empChoice = Integer.parseInt(getInput("Which employee?"));
+        System.out.println("0 Availability 1 Shift 2 Request");
+        int schChoice = Integer.parseInt(getInput("What kind of shift?"));
+        System.out.println("0 Mon 1 Tue 2 Wed 3 Thr 4 Fri 5 Sat 6 Sun");
+        int day = Integer.parseInt(getInput("Which day?"));
+
+        Employee emp = (Employee) empList.get(empChoice);
+        ArrayList<Object> list = emp.getDaySchedule(day, schChoice);
+        int i = 0;
+        for (Object obj : list)
+        {
+            TimeSpan tSpan = (TimeSpan) obj;  
+            System.out.println("+++++++++++++++++++++");
+            System.out.print("Shift " + i + "    ");
+            System.out.print(tSpan.getTimeIn() + "    ");
+            System.out.println(tSpan.getTimeOut());
+            i++;
+        }
+        int shiftSelection = Integer.parseInt(getInput("Remove which shift?"));
+        TimeSpan span = (TimeSpan)list.get(shiftSelection);
+        emp.removeShift(day, span, schChoice);
     }
 
     public void printEmployees(ArrayList<Object> empList)
@@ -85,6 +110,7 @@ public class Setup
                 System.out.println("0 Add Emp");
                 System.out.println("1 Add Sch to Emp");
                 System.out.println("2 Print Emp List");
+                System.out.println("3 Remove Sch from Emp");
                 System.out.println("100 Exit");
                 break;
             default:

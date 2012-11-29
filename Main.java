@@ -79,6 +79,9 @@ public class Main
                         case 2:
                             stp.printEmployees(employeesList);
                             break;
+                        case 3:
+                            stp.removeFromEmpSchedule(employeesList);
+                            break;
                         default:
                             System.out.println("Please choose an option.");
                             break;
