@@ -22,6 +22,24 @@ public class MasterSchedule extends Schedule
        //need to add mark to shift taken in master sch
     }
 
+    public void print()
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            System.out.println("++++++++++++++++++++++");
+            System.out.println("On day " + i);
+            ArrayList<Object> tempList = getDayList(i); 
+            for (Object span : tempList)
+            {
+                TimeSpan tSpan = (TimeSpan) span;  
+                System.out.println("------------------");
+                System.out.println(tSpan.getTimeIn());
+                System.out.println(tSpan.getTimeOut());
+
+            }
+        }
+    }
+
     public void generateSchedule(ArrayList empList)
     {
         ArrayList<Object> dayList = getDayList(3);

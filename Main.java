@@ -37,19 +37,57 @@ public class Main
         Setup stp = new Setup();
         while (running)
         {
-            stp.printOptions();
+            System.out.println("---Main Menu---");
+            System.out.print("0 Master Schedule Menu ");
+            System.out.print("1 Employee Menu "); 
+            System.out.println("100 Exit"); 
             int choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+            stp.printOptions(choice);
             switch(choice)
             {
                 case 0:
-                    stp.createEmployees(employeesList);
-                    System.out.println(employeesList);
+                    choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+                    System.out.println("---Master Schedule Menu---");
+                    switch(choice)
+                    {
+                        case 0:
+                            mSch1.generateSchedule(employeesList);
+                            break;
+                        case 1:
+                            mSch1.print();
+                            break;
+                        case 2:
+                            stp.addMasterShift(mSch1);
+                            break;
+                        default:
+                            System.out.println("Please choose an option.");
+                            break;
+                    }
+                    break;
+                case 1:
+                    choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+                    System.out.println("---Employee Menu---");
+                    switch(choice)
+                    {
+                        case 0:
+                            stp.createEmployees(employeesList);
+                            System.out.println(employeesList);
+                            break;
+                        case 1:
+                            stp.addToEmpSchedule(employeesList);
+                            break;
+                        case 2:
+                            stp.printEmployees(employeesList);
+                            break;
+                        default:
+                            System.out.println("Please choose an option.");
+                            break;
+                    }
                     break;
                 case 100:
                     running = false;
                     break;
                 default:
-                    System.out.println("Please choose an option.");
                     break;
             }
         }
