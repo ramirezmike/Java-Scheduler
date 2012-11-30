@@ -11,7 +11,11 @@ public class Setup
         {
             System.out.println("Employee Number " + i);
             System.out.println("-----------------------");
-            empList.add(makeEmp());
+            try{
+                empList.add(makeEmp());
+            }catch(Exception e){
+                System.out.println("Employee wasn't properly entered.");
+            }
         }
     }
 
@@ -100,12 +104,14 @@ public class Setup
         switch(menu)
         {
             case 0:
+                System.out.println("---Master Schedule Menu---");
                 System.out.println("These are your options:");
                 System.out.println("0 Generate Schedule");
                 System.out.println("1 Print Master Schedule");
                 System.out.println("2 Add Shift to Master Schedule");
                 break;
             case 1:
+                System.out.println("---Employee Menu---");
                 System.out.println("These are your options:");
                 System.out.println("0 Add Emp");
                 System.out.println("1 Add Sch to Emp");

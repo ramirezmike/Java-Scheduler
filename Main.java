@@ -34,6 +34,7 @@ public class Main
         emp2.printSchedule();
 
         boolean running = true;
+        boolean retry = true;
         Setup stp = new Setup();
         while (running)
         {
@@ -46,45 +47,74 @@ public class Main
             switch(choice)
             {
                 case 0:
-                    choice = Integer.parseInt(stp.getInput("What do you want to do?"));
-                    System.out.println("---Master Schedule Menu---");
-                    switch(choice)
+                    retry = true;
+                    while (retry)
                     {
-                        case 0:
-                            mSch1.generateSchedule(employeesList);
-                            break;
-                        case 1:
-                            mSch1.print();
-                            break;
-                        case 2:
-                            stp.addMasterShift(mSch1);
-                            break;
-                        default:
-                            System.out.println("Please choose an option.");
-                            break;
+                        try{
+                            choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+                        }catch(Exception e){
+                            System.out.println("Please enter a digit corresponding to the menu."); 
+                            continue;
+                        }
+                        switch(choice)
+                        {
+                            case 0:
+                                mSch1.generateSchedule(employeesList);
+                                retry = false;
+                                break;
+                            case 1:
+                                mSch1.print();
+                                retry = false;
+                                break;
+                            case 2:
+                                stp.addMasterShift(mSch1);
+                                retry = false;
+                                break;
+                            case 100:
+                                retry = false;
+                                break;
+                            default:
+                                System.out.println("Please choose an option.");
+                                break;
+                        }
                     }
                     break;
                 case 1:
-                    choice = Integer.parseInt(stp.getInput("What do you want to do?"));
-                    System.out.println("---Employee Menu---");
-                    switch(choice)
+                    retry = true;
+                    while (retry)
                     {
-                        case 0:
-                            stp.createEmployees(employeesList);
-                            System.out.println(employeesList);
-                            break;
-                        case 1:
-                            stp.addToEmpSchedule(employeesList);
-                            break;
-                        case 2:
-                            stp.printEmployees(employeesList);
-                            break;
-                        case 3:
-                            stp.removeFromEmpSchedule(employeesList);
-                            break;
-                        default:
-                            System.out.println("Please choose an option.");
-                            break;
+                        try{
+                            choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+                        }catch(Exception e){
+                            System.out.println("Please enter a digit corresponding to the menu.");  
+                            continue;
+                        }
+                        switch(choice)
+                        {
+                            case 0:
+                                stp.createEmployees(employeesList);
+                                System.out.println(employeesList);
+                                retry = false;
+                                break;
+                            case 1:
+                                stp.addToEmpSchedule(employeesList);
+                                retry = false;
+                                break;
+                            case 2:
+                                stp.printEmployees(employeesList);
+                                retry = false;
+                                break;
+                            case 3:
+                                stp.removeFromEmpSchedule(employeesList);
+                                retry = false;
+                                break;
+                            case 100:
+                                retry = false;
+                                break;
+                            default:
+                                System.out.println("Please choose an option.");
+                                break;
+                        }
                     }
                     break;
                 case 100:
