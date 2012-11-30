@@ -42,23 +42,27 @@ public class MasterSchedule extends Schedule
 
     public void generateSchedule(ArrayList empList)
     {
-        ArrayList<Object> dayList = getDayList(3);
-        boolean scheduleChanged = true;
-        while(scheduleChanged)
+        for (int i = 0; i < 7; i++)
         {
-            scheduleChanged = false;
-            for (Object tempTime : dayList)
+            ArrayList<Object> dayList = getDayList(i);
+            boolean scheduleChanged = true;
+            while(scheduleChanged)
             {
-                TimeSpan span = (TimeSpan)tempTime;
-                for (Object temp : empList)
+                scheduleChanged = false;
+                for (Object tempTime : dayList)
                 {
-                    Employee tempEmp = (Employee)temp;
-                    System.out.println(tempEmp.getFirstName());
-                    if (tempEmp.doesShiftExist(3, span, 0) && 
-                            !tempEmp.doesShiftExist(3,span, 1))
+                    TimeSpan span = (TimeSpan)tempTime;
+                    for (Object temp : empList)
                     {
-                        scheduleEmployee(3, span, tempEmp);
-                        scheduleChanged = true;
+                        Employee tempEmp = (Employee)temp;
+                        System.out.println(tempEmp.getFirstName());
+                        if (tempEmp.doesShiftExist(i, span, 0) && 
+                                !tempEmp.doesShiftExist(i,span, 1))
+                        {
+                            scheduleEmployee(i, span, tempEmp);
+                            System.out.println("Scheduled that shit..");
+                            scheduleChanged = true;
+                        }
                     }
                 }
             }

@@ -44,7 +44,13 @@ public class Main
             System.out.print("0 Master Schedule Menu ");
             System.out.print("1 Employee Menu "); 
             System.out.println("100 Exit"); 
-            int choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+            // this needs a try block
+            int choice; 
+            try{
+                choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+            }catch(Exception e){
+                continue;
+            }
             stp.clearScreen();
             stp.printOptions(choice);
             switch(choice)

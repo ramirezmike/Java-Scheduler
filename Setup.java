@@ -21,6 +21,7 @@ public class Setup
 
     public void removeEmployee(ArrayList<Object> empList)
     {
+        // if no employees, need to return or something
         printEmployees(empList);          
         String prompt = "Which employee would you like to remove?";
         int empChoice = Integer.parseInt(getInput(prompt));
