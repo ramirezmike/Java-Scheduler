@@ -108,6 +108,10 @@ public class Main
                                 stp.removeFromEmpSchedule(employeesList);
                                 retry = false;
                                 break;
+                            case 4:
+                                stp.removeEmployee(employeesList);
+                                retry = false;
+                                break;
                             case 100:
                                 retry = false;
                                 break;
