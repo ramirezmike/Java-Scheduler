@@ -87,6 +87,7 @@ public class Setup
         {
             Employee emp = (Employee)obj;
     //        System.out.println(i + " " + emp.getFirstName() + " " + emp.getLastName());
+            System.out.print("EMPLOYEE #" + i);
             emp.printSchedule();
             i++;
         }
@@ -145,5 +146,12 @@ public class Setup
             System.out.println("IOException: " + e);
         }
         return input;
+    }
+
+    public void clearScreen()
+    {
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 }

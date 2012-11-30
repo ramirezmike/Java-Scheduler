@@ -35,14 +35,17 @@ public class Main
 
         boolean running = true;
         boolean retry = true;
+        String continueString = "";
         Setup stp = new Setup();
         while (running)
         {
+            stp.clearScreen();
             System.out.println("---Main Menu---");
             System.out.print("0 Master Schedule Menu ");
             System.out.print("1 Employee Menu "); 
             System.out.println("100 Exit"); 
             int choice = Integer.parseInt(stp.getInput("What do you want to do?"));
+            stp.clearScreen();
             stp.printOptions(choice);
             switch(choice)
             {
@@ -59,16 +62,22 @@ public class Main
                         switch(choice)
                         {
                             case 0:
+                                stp.clearScreen();
                                 mSch1.generateSchedule(employeesList);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 1:
+                                stp.clearScreen();
                                 mSch1.print();
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 2:
+                                stp.clearScreen();
                                 stp.addMasterShift(mSch1);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 100:
                                 retry = false;
@@ -92,25 +101,35 @@ public class Main
                         switch(choice)
                         {
                             case 0:
+                                stp.clearScreen();
                                 stp.createEmployees(employeesList);
                                 System.out.println(employeesList);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 1:
+                                stp.clearScreen();
                                 stp.addToEmpSchedule(employeesList);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 2:
+                                stp.clearScreen();
                                 stp.printEmployees(employeesList);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 3:
+                                stp.clearScreen();
                                 stp.removeFromEmpSchedule(employeesList);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 4:
+                                stp.clearScreen();
                                 stp.removeEmployee(employeesList);
                                 retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
                                 break;
                             case 100:
                                 retry = false;
