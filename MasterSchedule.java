@@ -16,7 +16,7 @@ public class MasterSchedule extends Schedule
         System.out.println("Master added shift");
     }   
 
-    public void scheduleEmployee(int day, TimeSpan shiftTime, Employee emp)
+    public void scheduleEmployee(int day, TimeSpan shiftTime, Employee emp) throws Exception
     {
         emp.addShift(day, shiftTime, 1);
        //need to add mark to shift taken in master sch
@@ -57,11 +57,14 @@ public class MasterSchedule extends Schedule
                         Employee tempEmp = (Employee)temp;
                         System.out.println(tempEmp.getFirstName());
                         if (tempEmp.doesShiftExist(i, span, 0) && 
-                                !tempEmp.doesShiftExist(i,span, 1))
+                                !tempEmp.doesShiftExist(i, span, 1))
                         {
-                            scheduleEmployee(i, span, tempEmp);
-                            System.out.println("Scheduled that shit..");
-                            scheduleChanged = true;
+                            try{
+                                scheduleEmployee(i, span, tempEmp);
+                                System.out.println("Scheduled that shit..");
+                                System.out.println("Shift DoesshiftExist: " + tempEmp.doesShiftExist(i, span, 1));
+                                scheduleChanged = true;
+                            }catch(Exception e){System.out.println("OH FUCK!");}
                         }
                     }
                 }

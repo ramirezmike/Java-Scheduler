@@ -52,7 +52,9 @@ public class Setup
 
         TimeSpan tSpan = new TimeSpan(start, end);
         Employee emp = (Employee) empList.get(empChoice);
-        emp.addShift(day, tSpan, schChoice);
+        try{
+            emp.addShift(day, tSpan, schChoice);
+        }catch(Exception e){System.out.println("Schedule Error.");}
     }
 
     public void removeFromEmpSchedule(ArrayList<Object> empList)

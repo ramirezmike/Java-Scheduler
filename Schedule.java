@@ -13,7 +13,7 @@ public class Schedule
         }
     }
     
-    public void add(int day, TimeSpan shiftTime)
+    public void add(int day, TimeSpan shiftTime) throws Exception
     {
         ArrayList<Object> tempList = getDayList(day);
         if (!shiftExists(shiftTime, tempList))
@@ -27,7 +27,10 @@ public class Schedule
             }
         }
         else
+        {
             System.out.println("Shift exists");
+            throw new Exception();
+        }
     }
 
     public void remove(int day, TimeSpan shiftTime)
@@ -47,6 +50,18 @@ public class Schedule
     public ArrayList<Object> getDayList(int day)     
     {
         return schList.get(day);
+    }
+
+    public boolean scheduleCheck(int day, TimeSpan shiftTime)
+    {
+        ArrayList<Object> tempList = getDayList(day);
+        if (!shiftExists(shiftTime, tempList))
+        {
+            return true;
+        }
+        else
+            System.out.println("Shift exists");
+        return false;
     }
 
     public boolean isShiftWithinShift(TimeSpan shiftOne, TimeSpan shiftTwo)

@@ -13,14 +13,22 @@ public class Main
         employeesList.add(emp2);
         MasterSchedule mSch1 = new MasterSchedule();
 
-        TimeSpan tSpan = new TimeSpan(9.60,10.60);
-        TimeSpan tSpan2 = new TimeSpan(19.60,20.60);
+        TimeSpan tSpan = new TimeSpan(8.00,20.60);
+        TimeSpan tSpan2 = new TimeSpan(9.00,11.00);
+        TimeSpan tSpan3 = new TimeSpan(11.00,13.00);
+        TimeSpan tSpan4 = new TimeSpan(15.00,19.00);
 
-        emp1.addShift(3, tSpan, 0);
-        emp2.addShift(3, tSpan, 0);
-        emp2.removeShift(3, tSpan, 0);
-        emp2.addShift(3, tSpan2, 0);
-        mSch1.add(3, tSpan);
+        try{
+            emp1.addShift(0, tSpan, 0);
+        }catch(Exception e){System.out.println("EXCEPTION1!");}
+        try{
+            emp2.addShift(0, tSpan, 0);
+        }catch(Exception e){System.out.println("EXCEPTION2!");}
+//        emp2.removeShift(3, tSpan, 0);
+//        emp2.addShift(0, tSpan2, 0);
+        mSch1.add(0, tSpan2);
+        mSch1.add(0, tSpan3);
+        mSch1.add(0, tSpan4);
 
         ArrayList<Object> list = emp1.getDaySchedule(3,0); 
         System.out.println("Beginning list: " + list);

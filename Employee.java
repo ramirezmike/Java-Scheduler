@@ -29,7 +29,7 @@ public class Employee
         scheduleHolder.add(requestsOff);  //2
     }
 
-    public void addShift(int day, TimeSpan shiftTime, int scheduleNumber)
+    public void addShift(int day, TimeSpan shiftTime, int scheduleNumber) throws Exception
     {
         Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
         temp.add(day, shiftTime); 
