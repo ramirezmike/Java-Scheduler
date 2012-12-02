@@ -52,18 +52,6 @@ public class Schedule
         return schList.get(day);
     }
 
-    public boolean scheduleCheck(int day, TimeSpan shiftTime)
-    {
-        ArrayList<Object> tempList = getDayList(day);
-        if (!shiftExists(shiftTime, tempList))
-        {
-            return true;
-        }
-        else
-            System.out.println("Shift exists");
-        return false;
-    }
-
     public boolean isShiftWithinShift(TimeSpan shiftOne, TimeSpan shiftTwo)
     {
        return (shiftOne.getTimeIn() >= shiftTwo.getTimeIn() && shiftOne.getTimeOut() <= shiftTwo.getTimeOut()); 
