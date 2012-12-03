@@ -33,16 +33,18 @@ public class Employee
     {
         Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
         temp.add(day, shiftTime); 
-        ArrayList<Object> list = temp.getDayList(day);
-        System.out.println("Add. This is the " + scheduleNumber +" test: " + list);
     }
 
     public void removeShift(int day, TimeSpan shiftTime, int scheduleNumber)
     {
         Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
         temp.remove(day, shiftTime); 
-        ArrayList<Object> list = temp.getDayList(day);
-        System.out.println("Remove. This is the " + scheduleNumber +" test: " + list);
+    }
+
+    public void clearSchedule(int scheduleNumber)
+    {
+        Schedule temp = (Schedule)scheduleHolder.get(scheduleNumber);
+        temp.clear();
     }
 
     public boolean doesShiftExist(int day, TimeSpan shiftTime, int scheduleNumber)

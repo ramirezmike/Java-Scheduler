@@ -22,8 +22,6 @@ public class Schedule
             for (Object span : tempList)
             {
                 TimeSpan temp = (TimeSpan)span;
-                System.out.println(temp.getTimeIn());
-                System.out.println(temp.getTimeOut());
             }
         }
         else
@@ -42,7 +40,17 @@ public class Schedule
 
     public void clear()
     {
-        System.out.println("Cleared shift");
+        for (int i = 0; i < 7; i++)
+        {
+            ArrayList<Object> dayList = getDayList(i);
+            ArrayList<Object> tempList = new ArrayList<Object>(dayList);
+            for (Object obj : tempList)
+            {
+                TimeSpan span = (TimeSpan) obj;
+                dayList.remove(span);
+            }
+        }
+
     }
 
 // following may be removed if there's 

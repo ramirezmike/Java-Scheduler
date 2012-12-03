@@ -11,6 +11,7 @@ public class Main
         Employee emp2 = new Employee("Krystal", "Ramirez", 30, 40);
         employeesList.add(emp1);
         employeesList.add(emp2);
+
         MasterSchedule mSch1 = new MasterSchedule();
 
         TimeSpan tSpan = new TimeSpan(8.00,20.60);
@@ -20,23 +21,15 @@ public class Main
 
         try{
             emp1.addShift(0, tSpan, 0);
-        }catch(Exception e){System.out.println("EXCEPTION1!");}
-        try{
             emp2.addShift(0, tSpan, 0);
-        }catch(Exception e){System.out.println("EXCEPTION2!");}
-//        emp2.removeShift(3, tSpan, 0);
-//        emp2.addShift(0, tSpan2, 0);
+        }catch(Exception e){System.out.println("EXCEPTION1!");}
+
         mSch1.add(0, tSpan2);
         mSch1.add(0, tSpan3);
         mSch1.add(0, tSpan4);
 
-        ArrayList<Object> list = emp1.getDaySchedule(3,0); 
-        System.out.println("Beginning list: " + list);
 
-        list = emp1.getDaySchedule(3,1);
-        System.out.println("Shifts:" + list);
         mSch1.generateSchedule(employeesList);
-        System.out.println("Shifts:" + list);
 
         emp1.printSchedule();
         emp2.printSchedule();
@@ -142,6 +135,12 @@ public class Main
                             case 4:
                                 stp.clearScreen();
                                 stp.removeEmployee(employeesList);
+                                retry = false;
+                                continueString = stp.getInput("Enter anything to continue..");
+                                break;
+                            case 5:
+                                stp.clearScreen();
+                                stp.clearEmpSchedule(employeesList);
                                 retry = false;
                                 continueString = stp.getInput("Enter anything to continue..");
                                 break;

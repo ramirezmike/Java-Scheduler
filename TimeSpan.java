@@ -4,10 +4,12 @@ public class TimeSpan
     private double timeOut;
     private String position;
     private Employee scheduledEmp;
+    private boolean timeSpanFilled;
     
     public TimeSpan(double tIn, double tOut)
     {
         setTime(tIn, tOut);
+        timeSpanFilled = false;
     }
 
     public TimeSpan(double tIn, double tOut, String pos)
@@ -47,11 +49,25 @@ public class TimeSpan
         return timeOut;
     }
 
+    public boolean isFilled()
+    {
+        return timeSpanFilled; 
+    }
+
+    public void setFilled()
+    {
+        timeSpanFilled = true;
+    }
+
+    public void setEmpty()
+    {
+        timeSpanFilled = false;
+    }
+
     private double timeCheck(double time)
     {
         int timeInt = (int) time;
         double tempTime = time - timeInt; 
-        System.out.println(tempTime);
         if (tempTime > 0.59)
             time = timeInt + 1;
         if (time > 24 || time < 0)

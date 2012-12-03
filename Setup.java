@@ -28,6 +28,19 @@ public class Setup
         empList.remove(empChoice);
     }
 
+    public void clearEmpSchedule(ArrayList<Object> empList)
+    {
+        printEmployees(empList);          
+        String prompt = "Which employee?";
+        int empChoice = Integer.parseInt(getInput(prompt));
+        System.out.println("0 Availability 1 Shift 2 Request");
+        int schChoice = Integer.parseInt(getInput("What kind of shift?"));
+
+        Employee emp = (Employee) empList.get(empChoice);
+        emp.clearSchedule(schChoice);
+        System.out.println("Schedule cleared.");
+    }
+
     public void addMasterShift(MasterSchedule mSch)
     {
         System.out.println("0 Mon 1 Tue 2 Wed 3 Thr 4 Fri 5 Sat 6 Sun");
@@ -54,7 +67,7 @@ public class Setup
         Employee emp = (Employee) empList.get(empChoice);
         try{
             emp.addShift(day, tSpan, schChoice);
-        }catch(Exception e){System.out.println("Schedule Error.");}
+        }catch(Exception e){System.out.println("Schedule Error in addToEmpSchedule.");}
     }
 
     public void removeFromEmpSchedule(ArrayList<Object> empList)
@@ -130,6 +143,7 @@ public class Setup
                 System.out.println("2 Print Emp List");
                 System.out.println("3 Remove Sch from Emp");
                 System.out.println("4 Remove Employee");
+                System.out.println("5 Clear Schedule");
                 System.out.println("100 Exit");
                 break;
             default:

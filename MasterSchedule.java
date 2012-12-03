@@ -10,8 +10,6 @@ public class MasterSchedule extends Schedule
         for (Object span : tempList)
         {   
             TimeSpan temp = (TimeSpan)span;
-            System.out.println(temp.getTimeIn());
-            System.out.println(temp.getTimeOut());
         }   
         System.out.println("Master added shift");
     }   
@@ -19,7 +17,6 @@ public class MasterSchedule extends Schedule
     public void scheduleEmployee(int day, TimeSpan shiftTime, Employee emp) throws Exception
     {
         emp.addShift(day, shiftTime, 1);
-       //need to add mark to shift taken in master sch
     }
 
     public void print()
@@ -42,6 +39,8 @@ public class MasterSchedule extends Schedule
 
     public void generateSchedule(ArrayList empList)
     {
+        emptyScheduledSlots();
+
         for (int i = 0; i < 7; i++)
         {
             ArrayList<Object> dayList = getDayList(i);
@@ -54,37 +53,37 @@ public class MasterSchedule extends Schedule
                     TimeSpan span = (TimeSpan)tempTime;
                     for (Object temp : empList)
                     {
+                        if (span.isFilled())
+                            break;
                         Employee tempEmp = (Employee)temp;
-                        System.out.println(tempEmp.getFirstName());
-                        if (tempEmp.doesShiftExist(i, span, 0) && 
-                                !tempEmp.doesShiftExist(i, span, 1))
+                        if (!tempEmp.doesShiftExist(i, span, 0) || 
+                                tempEmp.doesShiftExist(i, span, 1))
+                           continue; 
+                        try{
+                            scheduleEmployee(i, span, tempEmp);
+                            scheduleChanged = true;
+                            span.setFilled();
+                        }catch(Exception e)
                         {
-                            try{
-                                scheduleEmployee(i, span, tempEmp);
-                                System.out.println("Scheduled that shit..");
-                                System.out.println("Shift DoesshiftExist: " + tempEmp.doesShiftExist(i, span, 1));
-                                scheduleChanged = true;
-                            }catch(Exception e){System.out.println("OH FUCK!");}
+                            System.out.println("Schedule Error in Generator.");
                         }
+                        
                     }
                 }
             }
         }
+    }
 
-
-        // Following is an outline of function idea
-        /*
-        boolean changes = true;
-        while(changes)
+    private void emptyScheduledSlots()
+    {
+        for (int i = 0; i < 7; i++)
         {
-            changes = false;
-            foreach(Employee e in employee)
-                if(e is free)
-                {
-                    scheduleEmployee(e);
-                    changes = true;
-                }
+            ArrayList<Object> dayList = getDayList(i);
+            for (Object temp : dayList)
+            {
+                TimeSpan span = (TimeSpan)temp; 
+                span.setEmpty();
+            }
         }
-        */
     }
 }
